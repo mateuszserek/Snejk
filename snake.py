@@ -1,8 +1,9 @@
 import config
+from apple import Apple
 
 class Snake:
-    head = [1, 1]
-    position_before_head = [[1, 1], [2, 1], [3, 1]]
+    head = [1, 2]
+    position_before_head = [[1, 1]]
     current_direction = [1, 0]
 
     def check_self_collision(self) -> bool:
@@ -12,14 +13,15 @@ class Snake:
             return False
         
     def check_screen_collision(self) -> bool:
-        if self.head[0] == config.screen_x_size or self.head[1] == config.screen_y_size:
+        if self.head[0] == config.screen_x_size or self.head[1] == config.screen_y_size or self.head[0] == 0 or self.head[1] == 0:
             return True 
         else:
             return False
     
-    def move(self) -> None:
+    def move(self, apple_eaten: bool) -> None:
         new_head = [self.head[0] + self.current_direction[0], self.head[1] + self.current_direction[1]]
-        self.position_before_head.pop(0)
+        if not apple_eaten:
+            self.position_before_head.pop(0)
         self.position_before_head.append(self.head)
         self.head = new_head
 
@@ -37,4 +39,8 @@ class Snake:
             case 'w':
                 self.current_direction = [0, -1]
         
-    
+    def check_if_apple_is_eaten(self, apple: Apple) -> bool:
+        if self.head == apple.position:
+            return True 
+        else:
+            return False
