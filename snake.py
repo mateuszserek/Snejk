@@ -2,7 +2,7 @@ import config
 from apple import Apple
 
 class Snake:
-    head = [1, 2]
+    head = [2, 1]
     position_before_head = [[1, 1]]
     current_direction = [1, 0]
 
@@ -20,8 +20,10 @@ class Snake:
     
     def move(self, apple_eaten: bool) -> None:
         new_head = [self.head[0] + self.current_direction[0], self.head[1] + self.current_direction[1]]
+
         if not apple_eaten:
             self.position_before_head.pop(0)
+
         self.position_before_head.append(self.head)
         self.head = new_head
 
