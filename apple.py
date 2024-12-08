@@ -2,7 +2,7 @@ from random import randint
 import config 
 
 def generate_pos():
-    return [randint(1, config.screen_x_size), randint(1, config.screen_y_size)]
+    return [randint(1, config.screen_x_size - 1), randint(1, config.screen_y_size - 1)]
 
 class Apple:
     counter = 0
