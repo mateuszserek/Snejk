@@ -20,13 +20,10 @@ def main(stdscr):
     player = Snake()
     apple = Apple()
     stdscr.timeout(1000)
-    while True:
-        generate_screen_border(stdscr)
-        stdscr.addstr(apple.position[1], apple.position[0], "A")
 
-        for i in player.position_before_head:
-            stdscr.addstr(i[1], i[0], "D")
-        stdscr.addstr(player.head[1], player.head[0], "D")
+    while True:
+        if player.check_screen_collision() or player.check_self_collision():
+            break 
         
         stdscr.refresh()
 
@@ -36,11 +33,15 @@ def main(stdscr):
         if is_eaten:
             apple.eaten_apple()
 
-        if player.check_screen_collision() or player.check_self_collision():
-            break 
-
         player.move(is_eaten)
         stdscr.clear()
+
+        generate_screen_border(stdscr)
+        stdscr.addstr(apple.position[1], apple.position[0], "A")
+
+        for i in player.position_before_head:
+            stdscr.addstr(i[1], i[0], "D")
+        stdscr.addstr(player.head[1], player.head[0], "X")
         
     stdscr.refresh()
     stdscr.clear()
@@ -50,4 +51,3 @@ def main(stdscr):
 
 
 curses.wrapper(main)
-print("test commit")

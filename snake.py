@@ -6,7 +6,7 @@ class Snake:
     position_before_head = [[1, 1]]
     current_direction = [1, 0]
 
-    def check_self_collision(self) -> bool:
+    def check_self_collision(self) -> bool: 
         if self.head in self.position_before_head:
             return True
         else:
