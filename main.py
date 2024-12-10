@@ -50,3 +50,4 @@ def main(stdscr):
 
 
 curses.wrapper(main)
+print("test commit")
