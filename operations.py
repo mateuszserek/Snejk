@@ -6,17 +6,20 @@ from snake import Snake
 player = Snake()
 apple = Apple()
 
+def middle_screen_location(text: str):
+    return (config.screen_x_size // 2) - (len(text) // 2)
+
 def generate_screen_border(stdscr) -> None:
     for i in range(config.screen_y_size):
         stdscr.addstr(i, 0, "|")
         stdscr.addstr(i, config.screen_x_size, "|")
-    for i in range(config.screen_x_size):
+    for i in range(1, config.screen_x_size):
         stdscr.addstr(0, i, "-")
         stdscr.addstr(config.screen_y_size, i, "-")
-
+ 
 def start(stdscr):
     stdscr.clear()
-    stdscr.addstr(config.screen_y_size // 2, config.screen_x_size // 2, "Snake Game! Press any key to start")
+    stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.start_text), config.start_text)
     stdscr.getch()
     stdscr.clear()
     stdscr.timeout(100)
@@ -24,7 +27,7 @@ def start(stdscr):
 def end(stdscr): #szybko się zamyka - problem z time.sleep
     stdscr.refresh()
     stdscr.clear()
-    stdscr.addstr(config.screen_y_size // 2, config.screen_x_size // 2, f"Game OVER, Apples eaten: {apple.counter}")
+    stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.end_text), f"{config.end_text} {apple.counter}")
     time.sleep(1)
     stdscr.getch()
 

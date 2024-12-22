@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 import config 
 
 def generate_pos():
