@@ -2,15 +2,16 @@ import time
 import config
 from apple import Apple
 from snake import Snake
+from curses import napms
 
 player = Snake()
 apple = Apple()
 
-def middle_screen_location(text: str):
+def middle_screen_location(text: str) -> int:
     return (config.screen_x_size // 2) - (len(text) // 2)
 
 def generate_screen_border(stdscr) -> None:
-    for i in range(config.game_screen_y_start, config.screen_y_size):
+    for i in range(config.game_screen_y_start + 1, config.screen_y_size):
         stdscr.addstr(i, config.game_screen_x_start, "|")
         stdscr.addstr(i, config.screen_x_size, "|")
 
@@ -20,6 +21,18 @@ def generate_screen_border(stdscr) -> None:
 
 def generate_points(stdscr) -> None:
     stdscr.addstr(config.game_screen_y_start // 2, middle_screen_location(config.point_text), f"{config.point_text} {apple.counter}")
+
+def get_game_screen_size() -> int: #do solidnego potestowania (wstepnie dziala)
+    x = config.screen_x_size - config.game_screen_x_start - 1
+    y = config.screen_y_size - config.game_screen_y_start - 1
+    return (x * y) 
+
+def check_game_over() -> bool: #do poprawy
+    if len(player.position_before_head) + 1 >= get_game_screen_size():
+        config.end_text = "GG WP"
+        return True 
+    else:
+        return False
  
 def start(stdscr):
     stdscr.clear()
@@ -28,17 +41,19 @@ def start(stdscr):
     stdscr.clear()
     stdscr.timeout(100)
 
-def end(stdscr): #szybko się zamyka - problem z time.sleep
+def end(stdscr): #do poprawy zamykanie
     stdscr.refresh()
     stdscr.clear()
     stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.end_text), f"{config.end_text} {apple.counter}")
-    time.sleep(1)
+    stdscr.refresh()
+    napms(10000)
+    stdscr.timeout(10000)
     stdscr.getch()
 
 def game(stdscr):
     while True:
 
-        if player.check_screen_collision() or player.check_self_collision():
+        if player.check_screen_collision() or player.check_self_collision() or check_game_over():
             break 
             
         stdscr.refresh()
