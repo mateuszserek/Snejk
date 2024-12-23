@@ -46,7 +46,7 @@ def end(stdscr): #do poprawy zamykanie
     stdscr.clear()
     stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.end_text), f"{config.end_text} {apple.counter}")
     stdscr.refresh()
-    napms(10000)
+    napms(500)
     stdscr.timeout(10000)
     stdscr.getch()
 
@@ -57,7 +57,7 @@ def game(stdscr):
             break 
             
         stdscr.refresh()
-
+        
         player.next_direction(stdscr.getch())
         is_eaten = player.check_if_apple_is_eaten(apple)
 
