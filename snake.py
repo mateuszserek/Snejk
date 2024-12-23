@@ -2,8 +2,8 @@ import config
 from apple import Apple
 
 class Snake:
-    head = [2, 1]
-    position_before_head = [[1, 1]]
+    head = [config.game_screen_x_start + 1, config.game_screen_y_start + 1]
+    position_before_head = [[config.game_screen_x_start, config.game_screen_y_start]]
     current_direction = [1, 0]
 
     def check_self_collision(self) -> bool: 
@@ -13,7 +13,7 @@ class Snake:
             return False
         
     def check_screen_collision(self) -> bool:
-        if self.head[0] == config.screen_x_size or self.head[1] == config.screen_y_size or self.head[0] == 0 or self.head[1] == 0:
+        if self.head[0] == config.screen_x_size or self.head[1] == config.screen_y_size or self.head[0] == config.game_screen_x_start or self.head[1] == config.game_screen_y_start:
             return True 
         else:
             return False

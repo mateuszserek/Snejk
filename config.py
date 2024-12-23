@@ -1,7 +1,10 @@
-screen_x_size = 25
-screen_y_size = 25
+game_screen_x_start = 0
+game_screen_y_start = 15
+screen_x_size = 10
+screen_y_size = 20
 snake_before_head_str = "D"
 snake_head = "X"
 apple_icon = "A"
 start_text = "Snake Game! Press any key to start"
 end_text = "Game OVER, Apples eaten:"
+point_text = "Points: "

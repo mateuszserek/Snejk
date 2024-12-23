@@ -10,12 +10,16 @@ def middle_screen_location(text: str):
     return (config.screen_x_size // 2) - (len(text) // 2)
 
 def generate_screen_border(stdscr) -> None:
-    for i in range(config.screen_y_size):
-        stdscr.addstr(i, 0, "|")
+    for i in range(config.game_screen_y_start, config.screen_y_size):
+        stdscr.addstr(i, config.game_screen_x_start, "|")
         stdscr.addstr(i, config.screen_x_size, "|")
-    for i in range(1, config.screen_x_size):
-        stdscr.addstr(0, i, "-")
+
+    for i in range(config.game_screen_x_start, config.screen_x_size):
+        stdscr.addstr(config.game_screen_y_start, i, "-")
         stdscr.addstr(config.screen_y_size, i, "-")
+
+def generate_points(stdscr) -> None:
+    stdscr.addstr(config.game_screen_y_start // 2, middle_screen_location(config.point_text), f"{config.point_text} {apple.counter}")
  
 def start(stdscr):
     stdscr.clear()
@@ -49,6 +53,7 @@ def game(stdscr):
         stdscr.clear()
 
         generate_screen_border(stdscr)
+        generate_points(stdscr)
         stdscr.addstr(apple.position[1], apple.position[0], config.apple_icon)
 
         for i in player.position_before_head:
