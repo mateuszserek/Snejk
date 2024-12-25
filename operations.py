@@ -39,7 +39,7 @@ def start(stdscr):
     stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.start_text), config.start_text)
     stdscr.getch()
     stdscr.clear()
-    stdscr.timeout(100)
+    stdscr.timeout(config.game_tick_ms)
 
 def end(stdscr): #do poprawy zamykanie
     stdscr.refresh()
@@ -53,6 +53,8 @@ def end(stdscr): #do poprawy zamykanie
 def game(stdscr):
     while True:
 
+        stdscr.timeout(config.game_tick_ms)
+        
         if player.check_screen_collision() or player.check_self_collision() or check_game_over():
             break 
             
