@@ -3,12 +3,10 @@ import config
 from apple import Apple
 from snake import Snake
 from curses import napms
+from functions import *
 
 player = Snake()
 apple = Apple()
-
-def middle_screen_location(text: str) -> int:
-    return (config.screen_x_size // 2) - (len(text) // 2)
 
 def generate_screen_border(stdscr) -> None:
     for i in range(config.game_screen_y_start + 1, config.screen_y_size):
@@ -21,11 +19,6 @@ def generate_screen_border(stdscr) -> None:
 
 def generate_points(stdscr) -> None:
     stdscr.addstr(config.game_screen_y_start // 2, middle_screen_location(config.point_text), f"{config.point_text} {apple.counter}")
-
-def get_game_screen_size() -> int: #do solidnego potestowania (wstepnie dziala)
-    x = config.screen_x_size - config.game_screen_x_start - 1
-    y = config.screen_y_size - config.game_screen_y_start - 1
-    return (x * y) 
 
 def check_game_over() -> bool: #do poprawy
     if len(player.position_before_head) + 1 >= get_game_screen_size():
@@ -56,6 +49,7 @@ def game(stdscr):
         stdscr.timeout(config.game_tick_ms)
         
         if player.check_screen_collision() or player.check_self_collision() or check_game_over():
+            play_music(config.game_over_sound)
             break 
             
         stdscr.refresh()

@@ -1,6 +1,7 @@
 import curses
 from operations import *
 import config
+import pygame.mixer
 
 def main(stdscr):
     # # curses.start_color()
@@ -13,6 +14,7 @@ def main(stdscr):
     # # Refresh to apply changes
     # generate_screen_border(stdscr)
     #stdscr.refresh()
+    pygame.mixer.init()
     y, x = stdscr.getmaxyx()
     config.screen_y_size = y - 1
     config.screen_x_size = x - 1
