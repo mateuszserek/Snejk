@@ -4,6 +4,7 @@ from snake import Snake
 from curses import napms
 from functions import *
 
+#pomyslec zeby przeniesc je do maina
 player = Snake()
 apple = Apple()
 
