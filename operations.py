@@ -1,4 +1,3 @@
-import time 
 import config
 from apple import Apple
 from snake import Snake
@@ -28,6 +27,7 @@ def check_game_over() -> bool: #do poprawy
         return False
  
 def start(stdscr):
+    apple.create_all_position_list()
     stdscr.clear()
     stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.start_text), config.start_text)
     stdscr.getch()
@@ -58,7 +58,7 @@ def game(stdscr):
         is_eaten = player.check_if_apple_is_eaten(apple)
 
         if is_eaten:
-            apple.eaten_apple()
+            apple.eaten_apple(player)
 
         player.move(is_eaten)
         stdscr.clear()

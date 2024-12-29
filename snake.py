@@ -2,9 +2,10 @@ import config
 from apple import Apple
 
 class Snake:
-    head = [config.game_screen_x_start + 1, config.game_screen_y_start + 1]
-    position_before_head = [[config.game_screen_x_start, config.game_screen_y_start]]
-    current_direction = [1, 0]
+    def __init__(self):
+        self.head = [config.game_screen_x_start + 1, config.game_screen_y_start + 1]
+        self.position_before_head = [[config.game_screen_x_start, config.game_screen_y_start]]
+        self.current_direction = [1, 0]
 
     def check_self_collision(self) -> bool: 
         if self.head in self.position_before_head:
