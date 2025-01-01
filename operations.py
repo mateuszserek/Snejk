@@ -28,7 +28,7 @@ def check_game_over() -> bool: #do poprawy
         return False
  
 def start(stdscr):
-    apple.create_all_position_list()
+    apple.create_all_position_list_and_first_position(player)
     stdscr.clear()
     stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.start_text), config.start_text)
     stdscr.getch()
