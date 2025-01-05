@@ -13,7 +13,7 @@ def generate_screen_border(stdscr) -> None:
         stdscr.addstr(i, config.game_screen_x_start, "|")
         stdscr.addstr(i, config.screen_x_size, "|")
 
-    for i in range(config.game_screen_x_start, config.screen_x_size):
+    for i in range(config.game_screen_x_start + 1, config.screen_x_size):
         stdscr.addstr(config.game_screen_y_start, i, "-")
         stdscr.addstr(config.screen_y_size, i, "-")
 
@@ -22,7 +22,7 @@ def generate_points(stdscr) -> None:
 
 def check_game_over() -> bool: #do poprawy
     if len(player.position_before_head) + 1 >= get_game_screen_size():
-        config.end_text = "GG WP"
+        config.end_text = config.end_win_text
         return True 
     else:
         return False

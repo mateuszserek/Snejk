@@ -25,6 +25,6 @@ class Apple:
         play_music(config.eat_sound)
         self.counter += 1 
         self.position = self.generate_pos(player.position_before_head)
-        if self.counter % 5 == 0 and config.game_tick_ms > 15:
-            config.game_tick_ms -= 5
+        if self.counter % config.how_much_apple_to_speed_up == 0 and config.game_tick_ms > 15:
+            config.game_tick_ms -= config.speed_up_tick_number
             play_music(config.speed_up_sound)

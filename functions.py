@@ -1,7 +1,7 @@
 import pygame.mixer
 import config
 
-def play_music(url: str) -> None: #dziala, za 1 razem jest maly lag, wiec trzeba to zainicjowac na poczatku programu
+def play_music(url: str) -> None:
     pygame.mixer.music.load(url)
     pygame.mixer.music.play()
 
