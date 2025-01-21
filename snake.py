@@ -3,8 +3,8 @@ from apple import Apple
 
 class Snake:
     def __init__(self):
-        self.head = [config.game_screen_x_start + 1, config.game_screen_y_start + 1]
-        self.position_before_head = [[config.game_screen_x_start, config.game_screen_y_start]]
+        self.head = [config.game_screen_x_start + 1, config.game_screen_y_start + 2]
+        self.position_before_head = [[config.game_screen_x_start + 1, config.game_screen_y_start], [config.game_screen_x_start + 1, config.game_screen_y_start + 1]]
         self.current_direction = [1, 0]
 
     def check_self_collision(self) -> bool: 

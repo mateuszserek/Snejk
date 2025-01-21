@@ -20,7 +20,7 @@ def generate_points(stdscr) -> None:
     stdscr.addstr(config.game_screen_y_start // 2, middle_screen_location(config.point_text), f"{config.point_text} {apple.counter}")
 
 def check_game_over() -> bool: 
-    if len(player.position_before_head) + 1 >= get_game_screen_size():
+    if len(player.position_before_head) >= get_game_screen_size():
         config.end_text = config.end_win_text
         return True 
     else:
@@ -39,7 +39,7 @@ def end(stdscr):
     stdscr.clear()
     stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.end_text), f"{config.end_text} {apple.counter}")
     stdscr.refresh()
-    napms(500)
+    napms(1000)
     stdscr.timeout(10000)
     stdscr.getch()
 

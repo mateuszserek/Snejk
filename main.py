@@ -4,6 +4,7 @@ import config
 import pygame.mixer
 
 def main(stdscr):
+    curses.curs_set(0)
     pygame.mixer.init()
     y, x = stdscr.getmaxyx()
     config.screen_y_size = y - 1
