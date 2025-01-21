@@ -19,8 +19,8 @@ def generate_screen_border(stdscr) -> None:
 def generate_points(stdscr) -> None:
     stdscr.addstr(config.game_screen_y_start // 2, middle_screen_location(config.point_text), f"{config.point_text} {apple.counter}")
 
-def check_game_over() -> bool: #do poprawy
-    if len(player.position_before_head) >= get_game_screen_size():
+def check_game_over() -> bool: 
+    if len(player.position_before_head) + 1 >= get_game_screen_size():
         config.end_text = config.end_win_text
         return True 
     else:
