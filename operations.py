@@ -4,7 +4,6 @@ from snake import Snake
 from curses import napms
 from functions import *
 
-#pomyslec zeby przeniesc je do maina
 player = Snake()
 apple = Apple()
 
@@ -21,7 +20,7 @@ def generate_points(stdscr) -> None:
     stdscr.addstr(config.game_screen_y_start // 2, middle_screen_location(config.point_text), f"{config.point_text} {apple.counter}")
 
 def check_game_over() -> bool: #do poprawy
-    if len(player.position_before_head) + 1 >= get_game_screen_size():
+    if len(player.position_before_head) >= get_game_screen_size():
         config.end_text = config.end_win_text
         return True 
     else:
@@ -35,7 +34,7 @@ def start(stdscr):
     stdscr.clear()
     stdscr.timeout(config.game_tick_ms)
 
-def end(stdscr): #do poprawy zamykanie
+def end(stdscr):
     stdscr.refresh()
     stdscr.clear()
     stdscr.addstr(config.screen_y_size // 2, middle_screen_location(config.end_text), f"{config.end_text} {apple.counter}")
